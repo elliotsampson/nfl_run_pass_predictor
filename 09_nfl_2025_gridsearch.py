@@ -79,7 +79,7 @@ print("your actual ne20_md12_run_pass_model test accuracy is...", ne50_md10_test
 #make a base model that will be optimised.
 base_run_pass_model = RandomForestClassifier(random_state=6)
  
-md_range = 
+md_range = [9, 10, 11]
 n_est_range = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
 parameters = {
     "max_depth" : md_range, 

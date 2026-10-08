@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from datetime import datetime
+import numpy as np 
 
 #import the data frame called "nfl_data_2025.csv", 
 df = pd.read_csv("nfl_data_2025.csv", low_memory=False)
@@ -51,8 +52,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.20, random
 base_run_pass_model = RandomForestClassifier(random_state=6)
 
 #specify the parameters you want to optimse over  
-md_range = [9, 10, 11]
-n_est_range = [41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+
+md_range = np.arange(6, 12, 1) 
+n_est_range = np.arange(35, 66, 1)
 parameters = {
     "max_depth" : md_range, 
     "n_estimators" : n_est_range} 
@@ -76,7 +78,7 @@ print("your optimised parameters give an accuracy of: ", search.best_score_)
 
 #lets save this model so we can play predictions with it 
 best_run_pass_model = search.best_estimator_
-model_filename = "best_run_pass_model.pkl"
+model_filename = "rival_run_pass_model.pkl"
 joblib.dump(best_run_pass_model, model_filename)
 print("your best_run_pass_model has been saved as... ", model_filename)
 
